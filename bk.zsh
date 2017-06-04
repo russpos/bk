@@ -23,13 +23,13 @@ function bk() {
     if [[ $1 == -c ]]; then
 
         if (( $# < 2 )); then
-            echo You must provide a bookmark name!
-            echo "bk -c <bookmark> - Create new bookmark of CWD"
-            return 0
+            NAME=$(basename `pwd`)
+        else
+            NAME=$2
         fi
-        touch $BK_FOLDER/$2
-        echo `pwd` >> $BK_FOLDER/$2
-        echo "Created bookmark '$2' at `pwd`"
+        touch $BK_FOLDER/$NAME
+        echo `pwd` >> $BK_FOLDER/$NAME
+        echo "Created bookmark '$NAME' at `pwd`"
         return 1
     fi
 
